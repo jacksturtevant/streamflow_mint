@@ -1,0 +1,154 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.wallet-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 10px;
+  justify-content: flex-end;
+
+  * {
+    margin-right: 10px;
+  }
+}
+
+.create-token-options {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 25vh;
+  justify-content: center;
+  height: calc(25vh - 80px);
+  width: 100%;
+  color: #61dafb;
+
+  .view-button {
+    color: #61dafb;
+    font-size: 16px;
+  }
+
+  .or-text {
+    margin: 50px 100px;
+    color: white;
+  }
+}
+
+.checkbox-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  .checkbox-text {
+    opacity: 75%;
+  }
+}
+
+.connect-to-mint {
+  font-size: 16px;
+}
+
+.address-input-wrapper {
+  font-size: 16px;
+
+  .address-name {
+    opacity: 75%;
+  }
+}
+
+.created-token-address {
+  color: white;
+  font-size: 16px;
+}
+
+.address-input {
+  width: 300px;
+}
+
+.address-error {
+  color: red;
+  font-size: 16px;
+}
+
+.list-commands {
+  white-space: pre-wrap;
+  text-align: left;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.created-token-info {
+  display: flex;
+  flex-direction: column;
+
+  * {
+    margin-top: 10px;
+  }
+}
+
+.list-commands {
+  max-width: 300px;
+  overflow-x: scroll;
+  display: flex;
+}
+
+.list-page {
+  display: flex;
+  flex-direction: row;
+}
+
+.list-right {
+  margin-left: 100px;
+  h1 {
+    font-size: 24px;
+    color: #61dafb;
+  }
+
+  h3 {
+    font-size: 18px;
+    color: #61dafb;
+    opacity: 75%;
+  }
+
+  div {
+    font-size: 14px;
+    text-align: left;
+    max-width: 600px;
+  }
+}
