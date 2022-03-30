@@ -2,45 +2,44 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Running the Project
 
-In the project directory, you can run:
+### Running Locally
 
-### `npm start`
+First, download the repository and run `yarn install`.
+From here, you will need to path a small bug between `cipher` and `create-react-app`.
+In `node_modules/cipher-base/package.json`, add these lines to the end of the JSON. This will prevent annoying, non-breaking typescript errors from popping up.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+  "browser": {
+    "stream": false
+  }
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+From here, you should be able to start the project with `yarn start`, which will open this project on `localhost:3000`.
 
-### `npm test`
+### Testing Locally
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Simply run `npm test` to run the test suite in `App.test.tsx`.
 
-### `npm run build`
+## Key Decisions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Most of the key decisions outlined below boil down to making a working project in the given timeframe.
+With each decision, I outline why I decided to do this, and what I would have done given infinite time.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Token List Intructions
+Unfortunately, given how Solana handles adding new tokens to their registry, it is impossible to add purely through the UI. 
+That is, unless you want huge security vulnerabilities in your app.
+To be able to (potentially) do this, you would need to grant the FE app permission to edit local files, which is something you never want to do.
+This is because you need to 
+- fork then clone the token list repo
+- copy in your new token logo asset
+- modify the token list json
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Even if there was a way to do this in Javascript (I found none), I would not do that. 
+Either, you would subject your app to security vulnerabilties by creating and modifying files in the app, or subject the user to the same problem by directly modifying their files.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+So, I decided to keep the actual listing functionality outside of the app, and instead walk the user through the exact steps for listing the token. 
+The most difficult part, modifying the token list and pushing this code, is all handled automatically in the script generated for the user. 
+I feel this solution is satisfactory. 
+Especially given that DexLab's token mint assumes the use has already created and submitted this PR, with no instructions to help the user.
